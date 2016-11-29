@@ -1,0 +1,137 @@
+<html>
+<head>
+	<title>HTTP/2 Performance</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		  function loadDeferredIframe() {
+	         var iframe = document.getElementById("my-deferred-iframe");
+	         iframe.src = "https://www.h2test.net/web/{{sitename}}/{{sitename}}.html";
+	     }
+		function iframeSRC(url) {
+            document.getElementById("http11").src = url;
+        }
+        //time check
+        var navSupport = !(!('performance' in window) || !('timing' in window.performance) || !('navigation' in window.performance));
+		 var time1;
+        function LoadTime1() {
+            var lapsed = navSupport ? window.performance.now() : Date.now() - Date.now();
+			time1 = ((lapsed) / 1000).toFixed(2);
+            document.getElementById("imgTiming1").innerHTML = time1;
+        }
+        function LoadTime2() {
+            var lapsed = navSupport ? window.performance.now() : Date.now() - Date.now();
+            document.getElementById("imgTiming2").innerHTML = (((lapsed) / 1000) -time1).toFixed(2)
+        }
+	$(document).ready(function(){
+		var scal = "scale(" + $('.frm').width()/$('.frame').width() + ")";
+	    $('.frame').css('-ms-transform', scal );
+	    $('.frame').css('-moz-transform', scal );
+	    $('.frame').css('-o-transform', scal );
+	    $('.frame').css('-webkit-transform', scal );
+	    $('.frame').css('transform', scal );
+	    $(window).resize(function() {
+	    	$('.row').css('width', $(window).width()+'px');
+	    	$('.row').css('height',$(window).height()+'px');
+	        var rescal = "scale(" + $('.frm').width()/$('.frame').width() + ")";
+		    $('.frame').css('-ms-transform', rescal );
+		    $('.frame').css('-moz-transform', rescal );
+		    $('.frame').css('-o-transform', rescal );
+		    $('.frame').css('-webkit-transform', rescal );
+		    $('.frame').css('transform', rescal );
+	    });
+    });
+   
+	</script>
+	<style>
+		.frm {
+		    width: 50%;
+		    height: 100%;
+		    padding: 0;
+		    overflow: hidden;
+		    float:left;
+		    display: block;
+		}
+		.frame {
+		    width: 1280px;
+		    height: 1024px;
+		    /*-ms-transform: scale(0.25);
+		    -moz-transform: scale(0.25);
+		    -o-transform: scale(0.25);
+		    -webkit-transform: scale(0.25);
+		    transform: scale(0.25);*/
+		    
+		    -ms-transform-origin: 0 0;
+		    -moz-transform-origin: 0 0;
+		    -o-transform-origin: 0 0;
+		    -webkit-transform-origin: 0 0;
+		    transform-origin: 0 0;
+		}
+		html {
+            color: #444;
+            font-family: helvetica, arial, sans-serif;
+            font-size: 100%;
+            line-height: 136%;
+        }
+
+        .frame-container {
+            width: 100%;
+            max-width: 100%;
+            float: left;
+            box-sizing: border-box;
+            padding-right: 2%;
+            padding-left: 2%;
+        }
+
+        .highlight {
+            color: #FF9933;
+        }
+
+        h1 {
+            font-size: 125%;
+            line-height: normal;
+        }
+
+        a, a:link {
+            color: #09c;
+            text-decoration: none;
+        }
+	</style>
+</head>
+<body>
+	<div class="row" style="width:100%;height:100%;">
+      <div class=frm>
+        <div class="frame-container">
+		    <div align="center">
+		        <h1 class="highlight"><a>HTTP/1.1</a></h1>
+		    </div>
+		    <div>
+		        <div>Load time: <strong class="highlight"><span id="imgTiming1"></span>s</strong>
+		        </div>
+		    </div>
+		    <!-- iframe -->
+		    <div class="wrap" style="width:100%;height:80%;float:left;display:block;">
+		        <iframe class="frame" src ='https://www.h1test.net/web/{{sitename}}/{{sitename}}.html' id="http11" marginheight="0" frameborder="0" scrolling="no" width="100%" height="99.9%"
+		                onload="LoadTime1();loadDeferredIframe()"></iframe>
+		    </div>
+		</div>
+      </div>
+      <div class=frm>
+        <div class="frame-container">
+		    <div align="center">
+		        <h1 class="highlight"><a>HTTP/2</a></h1>
+		    </div>
+		    <div>
+		        <div>Load time: <strong class="highlight"><span id="imgTiming2"></span>s</strong>
+		        </div>
+		    </div>
+		    <!-- iframe -->
+		    <div class="wrap" style="width:100%;height:80%;float:left;display:block;">
+		        <iframe id='my-deferred-iframe' class="frame" src='about;blank' id="http2" marginheight="0" frameborder="0" scrolling="no" width="100%" height="99.9%"
+		                onload="LoadTime2()"></iframe>
+		    </div>
+		</div>
+      </div>
+    </div>
+
+</body>
+</html>

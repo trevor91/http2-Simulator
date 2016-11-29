@@ -1,0 +1,129 @@
+/**
+******************************************************************
+*	DESKTOP LAYOUT 
+******************************************************************
+*/
+@media (min-width: 1900px) {
+
+}
+
+@media (min-width: 1700px) and (max-width: 1899px) {
+
+}
+
+@media (min-width: 1500px) and (max-width: 1699px) {
+
+}
+
+@media (min-width: 1300px) and (max-width: 1499px) {
+
+}
+
+@media (min-width: 1200px) and (max-width: 1299px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+/**
+******************************************************************
+*	MOBILE & TABLET COMMON
+******************************************************************
+*/
+@media (min-width: 200px) and (max-width: 991px) {
+
+}
+
+/**
+******************************************************************
+*	TABLET
+******************************************************************
+*/
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/**
+******************************************************************
+*	MOBILE
+******************************************************************
+*/
+@media (min-width: 200px) and (max-width: 767px) {
+
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+
+}
+
+@media (min-width: 480px) and (max-width: 599px) {
+
+}
+
+@media (min-width: 200px) and (max-width: 479px) {
+
+}
+
+@media ( max-width: 640px ) {
+    #tickets,
+    #tickets thead,
+    #tickets tbody,
+    #tickets tr,
+    #tickets th,
+    #tickets td {
+        display: block;
+    }
+    #tickets th,
+    #tickets td {
+        border-top: none;
+        border-bottom: none;
+    }
+}
+
+.frm {
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    float: left;
+    display: block;
+}
+
+.frame {
+    /*width: 1280px;
+    height: 1024px;
+    -ms-transform: scale(0.25);
+    -moz-transform: scale(0.25);
+    -o-transform: scale(0.25);
+    -webkit-transform: scale(0.25);
+    transform: scale(0.25);*/
+    width: 100px;
+    height: 150px;
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.inputStyle {
+    line-height: 60px;
+    text-align: center;
+}
+
+img{
+    max-width: 100%;
+}
+.urltitle{
+    padding-bottom: 10px;
+}
+#notice{
+    text-align: center;
+    margin-top: 40px;
+}

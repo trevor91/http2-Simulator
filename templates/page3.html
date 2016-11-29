@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<!--
+***************************************************************
+* PROJECT : NCHype Under-Construction Template
+* AUTHOR : NCodeArt
+***************************************************************
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="nc,ncodeart,slideshow,animation,youtube background,coming-soon,underconstruction">
+    <meta name="author" content="NCodeArt">
+
+    <title>H2 Performance Report</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+
+    <!-- FONT-ICON -->
+    <link rel="stylesheet" type="text/css" href="../static/lib/et-line-font/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/Icon-font-7-stroke-PIXEDEN/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/themify-icons/themify-icons.css">
+
+    <!-- DEFAULT-LIB -->
+    <link rel="stylesheet" type="text/css" href="../static/lib/animation/animate.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" type="text/css"
+          href="../static/lib/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/Magnific-Popup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/vegas/vegas.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/star-animation/star-animation.css">
+
+    <!-- TEMPLATE -->
+    <link rel="stylesheet" type="text/css" href="../static/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-structure.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/rp-main.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-helper.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-responsive.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/metronic-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/components.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        window.onload = function () {
+            //Create CDN Provider List table
+            // ex) cdn_dat[0] = ["akamai",70,38];
+            var cdn_dat = [];
+            cdn_dat = {{ data_set[2][1] | safe }};
+            var cdn_tbl = document.getElementById('cdn_t');
+            var cdn_tbody = document.createElement("tbody");
+            var cdn_tfoot = document.createElement("tfoot");
+            cdn_tfoot.className = "rp-table-theadtail";
+
+            for (var i = 0; i < cdn_dat.length; i++) {
+                var tr = document.createElement("tr");
+
+                for (var j = 0; j < cdn_dat[i].length; j++) {
+                    var td = document.createElement("td");
+                    var txt;
+                    if (j != 1) {
+                        txt = document.createTextNode(cdn_dat[i][j]);
+                    }
+                    else {  // if percentage data
+                        txt = document.createTextNode(cdn_dat[i][j] + "%");
+                    }
+                    td.setAttribute('style', "text-align:center;");
+                    td.appendChild(txt);
+                    //td.appendChild(att);
+                    tr.appendChild(td);
+                }
+
+                // Add data to tbody, if is not finish
+                if (i < cdn_dat.length - 1) {
+                    cdn_tbody.appendChild(tr);
+                    cdn_tbl.appendChild(cdn_tbody);
+                }
+                // Add data to tfoot, if finish
+                else {
+                    cdn_tfoot.appendChild(tr);
+                    cdn_tbl.appendChild(cdn_tfoot);
+                }
+            }
+
+            //Create Domain table
+            // ex) dom_data[0] = ["www.domain1.co.kr",60,30];
+            var dom_data = {{ data_set[2][2] | safe }};
+            var dom_tbl = document.getElementById('dom_t');
+            var dom_tbody = document.createElement("tbody");
+            var dom_tfoot = document.createElement("tfoot");
+            dom_tfoot.className = "rp-table-theadtail";
+
+            for (var i = 0; i < dom_data.length; i++) {
+                var tr = document.createElement("tr");
+
+                for (var j = 0; j < dom_data[i].length; j++) {
+                    var td = document.createElement("td");
+                    var txt;
+                    if (j != 1) {
+                        txt = document.createTextNode(dom_data[i][j]);
+                    }
+                    else { // if percentage data
+                        txt = document.createTextNode(dom_data[i][j] + "%");
+                    }
+
+                    td.appendChild(txt);
+                    td.setAttribute('style', "text-align:center;");
+                    tr.appendChild(td);
+                }
+
+                // Add data to tbody, if is not finish
+                if (i < dom_data.length - 1) {
+                    dom_tbody.appendChild(tr);
+                    dom_tbl.appendChild(dom_tbody);
+                }
+                // Add data to tfoot, if finish
+                else {
+                    dom_tfoot.appendChild(tr);
+                    dom_tbl.appendChild(dom_tfoot);
+                }
+            }
+
+            //Create Background about cdn provider data
+            var cdn_tbl = document.getElementById('cdn_t');
+            var cdn_rws = cdn_tbl.rows;
+            for (var i = 1; i < cdn_rws.length - 1; i++) {
+                var percentage = parseInt(cdn_rws[i].getElementsByTagName("td")[1].innerHTML, 10);
+                cdn_rws[i].getElementsByTagName("td")[0].style.backgroundImage = "url(../static/images/gray-pixel.png)";
+                cdn_rws[i].getElementsByTagName("td")[0].style.backgroundSize = percentage + "%" + " 100%";
+                cdn_rws[i].getElementsByTagName("td")[0].style.backgroundRepeat = "no-repeat";
+            }
+
+            //Create Background about domain data
+            var dom_tbl = document.getElementById('dom_t');
+            var dom_rws = dom_tbl.rows;
+            for (var i = 1; i < dom_rws.length - 1; i++) {
+                var percentage = parseInt(dom_rws[i].getElementsByTagName("td")[1].innerHTML, 10);
+                dom_rws[i].getElementsByTagName("td")[0].style.backgroundImage = "url(../static/images/gray-pixel.png)";
+                dom_rws[i].getElementsByTagName("td")[0].style.backgroundSize = percentage + "%" + " 100%";
+                dom_rws[i].getElementsByTagName("td")[0].style.backgroundRepeat = "no-repeat";
+            }
+        }
+    </script>
+    <style type="text/css">
+        #STATICMENU {
+            margin: 0pt;
+            padding: 0pt;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+    </style>
+    <script>
+        $("#REPORTBUTTON").click(function () {
+            $("#staticmenu").hide();
+        });
+    </script>
+    <script type="text/javascript">
+        var stmnLEFT = 25;
+        var stmnGAP1 = 25;
+        var stmnGAP2 = 5;
+        var stmnBASE = 25;
+        var stmnActivateSpeed = 15;
+        var stmnScrollSpeed = 35;
+        var stmnTimer;
+
+        function InitializeStaticMenu() {
+            document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';
+            document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px';
+            RefreshStaticMenu();
+        }
+        function RefreshStaticMenu() {
+            var stmnStartPoint, stmnEndPoint;
+            stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10);
+            stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2;
+
+            if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1;
+            if (stmnStartPoint != stmnEndPoint) {
+                stmnScrollAmount = Math.ceil(Math.abs(stmnEndPoint - stmnStartPoint) / 15);
+                document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint < stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px';
+                stmnRefreshTimer = stmnScrollSpeed;
+            }
+            stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed);
+        }
+    </script>
+</head>
+<body onload="InitializeStaticMenu();">
+    <div id="STATICMENU" class="rp-banner" style="z-index:3;">
+        <a href="#MAIN SCREEN"><p>#MAIN SCREEN</p></a>
+        <a href="#ORIGIN INFORMATION"><p>#ORIGIN INFORMATION</p></a>
+        <a href="#DETAIL COMPARISON"><p>#DETAIL COMPARISON</p></a>
+        <!--<a href="#" onclick="MGJS.goTop();return false;" onfocus="this.blur()"><img width=50px src="../static/images/GoTop.jpg"></a><p>-->
+    </div>
+<!-- PAGE-LOADER -->
+<div class="page-loader-wrapper page-loader-wrapper-5 flex-cc">
+    <div class="loader">
+        <img src="../static/images/page-load-2.gif" alt="img">
+    </div>
+</div><!-- / PAGE-LOADER -->
+
+<!-- MAIN-WRAPPER -->
+<div id="main-wrapper" class="main-wrapper" style="z-index:2;">
+
+    <!-- BACKGROUND -->
+    <div class="bg-section bg-cover bg-cc" data-bgImage="../static/images/bg-24.jpg">
+        <!--<div class="overlay" style="background-color: rgba(0,0,0,0.35);"></div>-->
+        <!--<div class="bgslider" data-kenburnBgslider="../static/images/bg-19.jpg|../static/images/bg-14.jpg|../static/images/bg-16.jpg"></div>-->
+    </div><!-- / BACKGROUND -->
+
+    <!-- HOME-WRAPPER -->
+    <div id="home-wrapper" class="flex-cc page-wrapper">
+    </div><!-- / HOME-WRAPPER -->
+
+    <!-- PAGE LEFT -->
+    <div id="page-left" class="pages scroll-bar">
+
+        <div class="outer-wrp">
+            <!-- SERVICES-SECTION -->
+            <div class="sections service-section service-section-2">
+                <div class="container">
+                    <div class="overlay2" style="background-color: rgba(0,0,0,0)">
+                        <!-- TITLE -->
+                        <div class="title-wrp">
+                            <h5 class="rp-title mini">report</h5>
+                            <hr class="hr-1">
+                            <h1 class="rp-title">WEB SIMULATION REPORT</h1> <!-- Page title -->
+                            <p class="rp-sub-title">WEB SOURCES ANALYSIS SHEET ON HTTP/1.1 &amp; HTTP/2
+                            </p> <!-- URL -->
+                            <hr class="hr-2">
+                            <p class="rp-double-sub-title">Whether you have a site which you have entered on the site,
+                                you can analyze what you can
+                                do with HTTP/1.1 and HTTP/2. ( Excludes CDN and other cache for fair testing )</p>
+                            <hr class="hr-2">
+                        </div><!-- / TITLE -->
+
+                        <!-- CONTENT -->
+                        <div class="rp-content-wrp">
+                            <div class="rp-ctitle50">
+                                <p class="rp-content-title"><a id="MAIN SCREEN" name="MAIN SCREEN"></a>&nbsp;Main Screen</p>
+                                <p class="rp-content-txt" style="margin-bottom: 40px">Test url : <a href="www.{{sitename}}">{{sitename}}</a></p>
+                                <img src="../static/wpt/{{ sitename }}/orgin/screenshot.jpg" class="wpt-screenshot"/>
+
+                            </div>
+                            <div class="rp-ctitle50">
+                                <p class="rp-content-title">&nbsp;Load time</p>
+                                <div id="echarts_bar" style="width:420px; height:420px;"></div>
+                            </div>
+                            <div class="rp-ctitle">
+                                <p class="rp-content-title"><a id="ORIGIN INFORMATION" name="ORIGIN INFORMATION"></a>&nbsp;Origin information</p>
+                                <p class="rp-content-txt">Students in teh United States submitted over 33.5 million
+                                    papers to Turnitin between June 2010 and June 2011. Nearly 128 million content
+                                    matches were found between these papers and the Turnitin index of the Web.</p>
+
+                                <div class="rp-content-wrapper">
+                                    <!-- CDN TABLE-->
+                                    <div class="portlet box red">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>&nbsp;CDN Provider list
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table id="cdn_t" class="table">
+                                                    <thead class="rp-table-theadtail">
+                                                    <tr>
+                                                        <td width="70%" style="text-align:center;">CDN name</td>
+                                                        <td style="text-align:center;">req Percent</td>
+                                                        <td style="text-align:center;">req Counts</td>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Domain TABLE-->
+                                    <div class="portlet box red">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>&nbsp;Domain list
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table id="dom_t" class="table">
+                                                    <thead class="rp-table-theadtail">
+                                                    <tr>
+                                                        <td width="60%" style="text-align:center;">Domain name</td>
+                                                        <td style="text-align:center;">req Percent</td>
+                                                        <td style="text-align:center;">req Counts</td>
+                                                        <td style="text-align:center;">Bytes</td>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="rp-ctitle">
+                                <p class="rp-content-title"><a id="DETAIL COMPARISON" name="DETAIL COMPARISON"></a>&nbsp;Detail Comparison</p>
+                                <p class="rp-content-txt">Students in teh United States submitted over 33.5 million
+                                    papers to Turnitin between June 2010 and June 2011. Nearly 128 million content
+                                    matches were found between these papers and the Turnitin index of the Web.</p>
+
+                                <div class="rp-content-wrapper">
+                                    <div class="rp-comparison">
+                                        <div class="rp-left"><!-- HTTP 1.1 CONTENTS-->
+                                            <div class="portlet box red">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-cogs"></i>&nbsp;HTTP/1.x
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="table-responsive">
+
+                                                        <div class="rp-ctitle-top">
+                                                            <p class="rp-subcontent-title">&nbsp;Resource
+                                                                BreakDown</p>
+                                                            <div id="echarts_pie" style="height:350px; margin-top: 10px"></div>
+                                                            <p class="rp-subcontent-txt" style="margin: 20px; font-size: 20px">Total size : {{data_set[0][10]}} bytes</p>
+                                                        </div>
+                                                        <div class="rp-ctitle">
+                                                            <p class="rp-subcontent-title">&nbsp;Connection view
+                                                            </p>
+                                                            <p class="rp-subcontent-txt">Students in teh United
+                                                                States submitted over 33.5 million papers to
+                                                                Turnitin between June 2010 and June 2011. Nearly 128
+                                                                million content matches were found between these
+                                                                papers and the Turnitin index of the Web.</p>
+                                                            <img src="../static/wpt/{{ sitename }}/h1/connection.png"
+                                                                 class="rp-flow"/>
+                                                        </div>
+                                                        <div class="rp-ctitle">
+                                                            <p class="rp-subcontent-title">&nbsp;Waterfall view
+                                                            </p>
+                                                            <p class="rp-subcontent-txt">Students in teh United
+                                                                States submitted over 33.5 million papers to
+                                                                Turnitin between June 2010 and June 2011. Nearly 128
+                                                                million content matches were found between these
+                                                                papers and the Turnitin index of the Web.</p>
+                                                            <img src="../static/wpt/{{ sitename }}/h1/waterfall.png"
+                                                                 class="rp-flow"/>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="rp-right"><!-- HTTP 2 CONTNETS-->
+                                                <div class="portlet box red">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="fa fa-cogs"></i>&nbsp;HTTP/2
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="table-responsive">
+                                                            <div class="rp-ctitle-top">
+                                                                <p class="rp-subcontent-title">&nbsp;Resource
+                                                                    BreakDown</p>
+                                                                <div id="echarts_pie2" style="height:350px; margin-top: 10px"></div>
+                                                                <p class="rp-subcontent-txt" style="margin: 20px; font-size: 20px">Total size : {{data_set[1][10]}} bytes</p>
+                                                            </div>
+                                                            <div class="rp-ctitle">
+                                                                <p class="rp-subcontent-title">&nbsp;Connection view
+                                                                </p>
+                                                                <p class="rp-subcontent-txt">Students in teh United
+                                                                    States submitted over 33.5 million papers to
+                                                                    Turnitin between June 2010 and June 2011. Nearly 128
+                                                                    million content matches were found between these
+                                                                    papers and the Turnitin index of the Web.</p>
+                                                                <img src="../static/wpt/{{ sitename }}/h2/connection.png"
+                                                                     class="rp-flow"/>
+                                                            </div>
+                                                            <div class="rp-ctitle">
+                                                                <p class="rp-subcontent-title">&nbsp;Waterfall view
+                                                                </p>
+                                                                <p class="rp-subcontent-txt">Students in teh United
+                                                                    States submitted over 33.5 million papers to
+                                                                    Turnitin between June 2010 and June 2011. Nearly 128
+                                                                    million content matches were found between these
+                                                                    papers and the Turnitin index of the Web.</p>
+                                                                <img src="../static/wpt/{{ sitename }}/h2/waterfall.png"
+                                                                     class="rp-flow"/>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                </div><!-- rp-content-wrapper -->
+                            </div>
+                        </div>
+
+                    </div><!-- BACKGROUND -->
+                </div>
+            </div>
+            <!-- / SERVICES-SECTION -->
+        </div>
+    </div><!-- / PAGE LEFT -->
+</div><!-- / MAIN-WRAPPER -->
+
+</div>
+<!-- DEFAULT-SCRIPT -->
+<script src="../static/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../static/lib/jquery-validation/jquery.validate.min.js"></script>
+
+<!-- PLUGIN SCRIPT -->
+<script src="../static/js/plugins.js"></script>
+<script src="../static/js/util.js"></script>
+
+<!-- TEMPLATE SCRIPT -->
+<script src="../static/js/nc-common.js"></script>
+<script src="../static/assets/jquery.min.js" type="text/javascript"></script>
+        <script src="../static/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../static/assets/echarts/echarts.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            jQuery.noConflict();
+
+        jQuery(document).ready(function()
+        {
+            require.config({
+                paths:
+                {
+                    echarts:"../static/assets/echarts/"
+                }
+            }),require(
+            [
+                "echarts",
+                "echarts/chart/bar",
+                "echarts/chart/chord",
+                "echarts/chart/eventRiver",
+                "echarts/chart/force",
+                "echarts/chart/funnel",
+                "echarts/chart/gauge",
+                "echarts/chart/heatmap",
+                "echarts/chart/k",
+                "echarts/chart/line",
+                "echarts/chart/map",
+                "echarts/chart/pie",
+                "echarts/chart/radar",
+                "echarts/chart/scatter",
+                "echarts/chart/tree",
+                "echarts/chart/treemap",
+                "echarts/chart/venn",
+                "echarts/chart/wordCloud"
+            ],function(e)
+            {
+                var a=e.init(document.getElementById("echarts_bar"));
+                a.setOption({
+                    tooltip:{trigger:"axis"},
+                    legend:{data:["HTTP/1.1","HTTP/2"],color:"white"},
+                    /*toolbox:{show:!0,feature:{mark:{show:!0},
+                    dataView:{show:!0,readOnly:!1},
+                    magicType:{show:!0,type:["line","bar"]},
+                    restore:{show:!0},saveAsImage:{show:!0}}},
+                    calculable:!0,*/
+                    xAxis:[{
+                        type:"category",
+                        data:["First View","Repeat View"]
+                    }],
+                    yAxis:[{
+                        type:"value",
+                        splitArea:{show:!0}
+                    }],
+                    series:[{
+                        name:"HTTP/1.1",
+                        type:"bar",
+                        data:[{{ data_set[0][1] }},{{ data_set[0][2] }}]
+                    },
+                    {
+                        name:"HTTP/2",
+                        type:"bar",
+                        data:[{{ data_set[1][1] }},{{ data_set[1][2] }}]
+                    }]
+                });
+
+                var l=e.init(document.getElementById("echarts_pie"));
+                l.setOption(
+                    {
+                        tooltip:
+                        {
+                            show:!0,formatter:"{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        /*legend:
+                        {
+                            orient:"vertical",
+                            x:"left",
+                            data:
+                            ["HTML size","Javascript size","CSS size","Image size","Flash size","Font size","Other size"]
+                        },*/
+                        toolbox:
+                        {
+                            show:!0,
+                            feature:
+                            {
+                                mark:{show:!0},
+                                dataView:{show:!0,readOnly:!1},
+                                restore:{show:!0},
+                                saveAsImage:{show:!0}}
+                            },
+                            calculable:!0,
+                            series:[
+                            {
+                                name:"Info",
+                                type:"pie",
+                                center:["50%",200],
+                                radius:100,
+                                itemStyle:
+                                {
+                                    normal:
+                                    {
+                                        label:
+                                        {
+                                            position:"inner",
+                                            formatter:function(e)
+                                            {return(e.percent-0).toFixed(0)+"%"}
+                                        },
+                                        labelLine:{show:!1}
+                                    },
+                                    emphasis:
+                                    {
+                                        label:
+                                        {
+                                            show:!0,formatter:"{b}\n{d}%"
+                                        }
+                                    }
+                                },
+                                data:[
+                        //[, , , , , , html_siz, js_siz, css_siz, img_siz, fls_siz, font_siz, ot_siz, total_rcs_siz]
+                        //gen_h1x=[arg_h1x_hash,arg_h1x_list[0],arg_h1x_list[6],arg_h1x_list[7],arg_h1x_list[8],arg_h1x_list[9],arg_h1x_list[10],arg_h1x_list[11],arg_h1x_list[12]] # hash, load_time
+                                    {value:{{ data_set[0][3] }},name:"HTML size"},
+                                    {value:{{ data_set[0][4] }},name:"Javascript size"},
+                                    {value:{{ data_set[0][5] }},name:"CSS size"},
+                                    {value:{{ data_set[0][6] }},name:"Image size"},
+                                    {value:{{ data_set[0][7] }},name:"Flash size"},
+                                    {value:{{ data_set[0][8] }},name:"Font size"},
+                                    {value:{{ data_set[0][9] }},name:"Other size"}
+                                ]
+                            },
+                                {
+                                    name:"Detail Info",
+                                    type:"pie",
+                                    center:["50%",200],
+                                    radius:[110,140],
+                                    data:[
+                                        {value:{{ data_set[0][3] }},name:"HTML size"},
+                                        {value:{{ data_set[0][4] }},name:"Javascript size"},
+                                        {value:{{ data_set[0][5] }},name:"CSS size"},
+                                        {value:{{ data_set[0][6] }},name:"Image size"},
+                                        {value:{{ data_set[0][7] }},name:"Flash size"},
+                                        {value:{{ data_set[0][8] }},name:"Font size"},
+                                        {value:{{ data_set[0][9] }},name:"Other size"}
+                                    ]
+                                }
+                            ]
+                        }
+                    )// l.setOption( End
+                var l=e.init(document.getElementById("echarts_pie2"));
+                l.setOption(
+                    {
+                        tooltip:
+                        {
+                            show:!0,formatter:"{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        /*legend:
+                        {
+                            orient:"vertical",
+                            x:"left",
+                            data:
+                            ["HTML size","Javascript size","CSS size","Image size","Flash size","Font size","Other size"]
+                        },*/
+                        toolbox:
+                        {
+                            show:!0,
+                            feature:
+                            {
+                                mark:{show:!0},
+                                dataView:{show:!0,readOnly:!1},
+                                restore:{show:!0},
+                                saveAsImage:{show:!0}}
+                            },
+                            calculable:!0,
+                            series:[
+                            {
+                                name:"Info",
+                                type:"pie",
+                                center:["50%",200],
+                                radius:100,
+                                itemStyle:
+                                {
+                                    normal:
+                                    {
+                                        label:
+                                        {
+                                            position:"inner",
+                                            formatter:function(e)
+                                            {return(e.percent-0).toFixed(0)+"%"}
+                                        },
+                                        labelLine:{show:!1}
+                                    },
+                                    emphasis:
+                                    {
+                                        label:
+                                        {
+                                            show:!0,formatter:"{b}\n{d}%"
+                                        }
+                                    }
+                                },
+                                data:[//["All","Marketing","Search","EDM","Partnership","Video","Social","Google","Bing","Others"]
+                                    {value:{{ data_set[1][3] }},name:"HTML size"},
+                                    {value:{{ data_set[1][4] }},name:"Javascript size"},
+                                    {value:{{ data_set[1][5] }},name:"CSS size"},
+                                    {value:{{ data_set[1][6] }},name:"Image size"},
+                                    {value:{{ data_set[1][7] }},name:"Flash size"},
+                                    {value:{{ data_set[1][8] }},name:"Font size"},
+                                    {value:{{ data_set[1][9] }},name:"Other size"}
+                                ]
+                            },
+                                {
+                                    name:"Detail Info",
+                                    type:"pie",
+                                    center:["50%",200],
+                                    radius:[110,140],
+                                    data:[
+                                        {value:{{ data_set[1][3] }},name:"HTML size"},
+                                        {value:{{ data_set[1][4] }},name:"Javascript size"},
+                                        {value:{{ data_set[1][5] }},name:"CSS size"},
+                                        {value:{{ data_set[1][6] }},name:"Image size"},
+                                        {value:{{ data_set[1][7] }},name:"Flash size"},
+                                        {value:{{ data_set[1][8] }},name:"Font size"},
+                                        {value:{{ data_set[1][9] }},name:"Other size"}
+                                    ]
+                                }
+                            ]
+                        }
+                    )// l.setOption( End
+                }
+            )
+        }
+    );
+        </script>
+</body>
+</html>

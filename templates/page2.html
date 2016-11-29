@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<!--
+***************************************************************
+* PROJECT : NCHype Under-Construction Template
+* AUTHOR : NCodeArt
+***************************************************************
+-->
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="nc,ncodeart,slideshow,animation,youtube background,coming-soon,underconstruction">
+    <meta name="author" content="NCodeArt">
+
+    <title>H2 Performance</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+
+    <!-- FONT-ICON -->
+    <link rel="stylesheet" type="text/css" href="../static/lib/et-line-font/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/Icon-font-7-stroke-PIXEDEN/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/themify-icons/themify-icons.css">
+
+    <!-- DEFAULT-LIB -->
+    <link rel="stylesheet" type="text/css" href="../static/lib/animation/animate.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" type="text/css"
+          href="../static/lib/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/Magnific-Popup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/vegas/vegas.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/star-animation/star-animation.css">
+
+    <!-- TEMPLATE -->
+    <link rel="stylesheet" type="text/css" href="../static/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-structure.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-main.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-helper.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nc-responsive.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+
+    <!-- DEFAULT-SCRIPT -->
+    <script src="../static/lib/jquery/jquery-1.11.3.min.js"></script>
+    <script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/lib/jquery-validation/jquery.validate.min.js"></script>
+
+    <!-- PLUGIN SCRIPT -->
+    <script src="../static/js/plugins.js"></script>
+
+
+    <!-- TEMPLATE SCRIPT -->
+    <script src="../static/js/nc-common.js"></script>
+    <script>
+        function icon4Toggle() {
+            $("#h2icon4").text(function (i, text) {
+                return text === "Click!" ? "HTTP/2 Demo" : "Click!";
+            })
+        }
+        function icon6Toggle() {
+            $("#h2icon6").text(function (i, text) {
+                return text === "Click!" ? "Completed" : "Click!";
+            })
+        }
+        var speed = 500;
+        /*----------green -> white -> green----------*/
+        function flashit(id) {
+            var crosstable = document.getElementById ? document.getElementById(id) : document.all ? document.all.transColor : ""
+            if (crosstable) {
+                if (crosstable.style.color.indexOf("green") != -1)
+                    crosstable.style.color = "white"
+                else
+                    crosstable.style.color = "green"
+            }
+        }
+        var inter = setInterval("flashit('icon3')", speed)
+        /*----------/green -> white -> green----------*/
+        /*----------SSE----------*/
+        $(document).ready(
+                function () {
+                    sse = new EventSource('/my_event_source/{{url}}');
+                    sse.onmessage = function (message) {
+                        var origin = location.href;
+                        //console.log('A message has arrived!');
+                        if (message.data == 'icon3') {
+                            clearInterval(inter);
+                            console.log(speed)
+                            $("#icon3").attr("id", "").css("color", "green"); //done
+                            $("#icon4").attr("id", "").css("color", "yellow"); //button
+                            $("#icon4module").attr("href", "{{url_for('iframe',sitename=sitename)}}")
+                            console.log(origin + 'iframe/{{url}}')
+                            setInterval("icon4Toggle()", speed); //button
+                            setInterval("flashit('icon5')", speed) //ing
+                        }
+                        else if (message.data == 'icon5') {
+                            $("#icon5").attr("id", "").css("color", "green");
+                            $("#icon6").attr("id", "").css("color", "yellow");
+                            $("#icon6module").attr("href", "{{url_for('result',sitename=sitename)}}")
+                            //console.log(origin + 'iframe/{{url}}')
+                            setInterval("icon6Toggle()", speed);
+                        }
+                        else if (message.data == 'last-item') {
+                            console.log('end')
+                            sse.close();
+                        }
+                    }
+                })
+        /*----------/SSE----------*/
+    </script>
+    <!--<script src="../static/js/scrollSpeed.js"/>-->
+    <!--<script>-->
+        <!--$(function () {-->
+            <!--// Default-->
+            <!--jQuery.scrollSpeed(500, 1000);-->
+
+        <!--});-->
+    <!--</script>-->
+</head>
+<body>
+<!-- PAGE-LOADER -->
+<div class="page-loader-wrapper page-loader-wrapper-5 flex-cc">
+    <div class="loader">
+        <img src="../static/images/page-load-2.gif" alt="img">
+    </div>
+</div><!-- / PAGE-LOADER -->
+
+<!-- MAIN-WRAPPER -->
+<div id="main-wrapper" class="main-wrapper">
+
+    <!-- BACKGROUND -->
+    <div class="bg-section bg-cover bg-cc" data-bgImage="../static/images/bg-24.jpg">
+        <!--<div class="overlay" style="background-color: rgba(0,0,0,0.35);"></div>-->
+        <!--<div class="bgslider" data-kenburnBgslider="../static/images/bg-19.jpg|../static/images/bg-14.jpg|../static/images/bg-16.jpg"></div>-->
+    </div><!-- / BACKGROUND -->
+
+    <!-- PAGE LEFT -->
+    <div id="page-left" class="pages scroll-bar">
+        <div class="outer-wrp">
+
+            <!-- ABOUT-SECTION -->
+            <div class="sections about-section about-section-2">
+                <div class="container">
+
+                    <!-- TITLE -->
+                    <div class="title-wrp">
+                        <h5 class="title mini">{{url}}</h5>
+                        <!-- <hr class="hr-1"> -->
+                        <hr>
+                        <h1 class="title">DIAGNOSIS</h1>
+                    </div><!-- / TITLE -->
+
+                    <!-- CONTENT -->
+                    <div class="content-wrp">
+                        <div class="row gt60">
+
+                            <!-- IMAGE -->
+                            <div class="col-md-5 r-part">
+                                <div class="image-wrapper animated s0-8 delay-0-2s" data-animOut="fadeOutUp"
+                                     data-animIn="fadeInUp">
+                                    <img src="../static/{{imgurl}}" alt="About us">
+                                </div>
+                            </div><!-- / IMAGE -->
+
+                            <div class="col-md-7 l-part">
+                                <p class="large-text" data-animOut="fadeOutUp" data-animIn="fadeInUp">
+                                    This page displays simple information about the site.<br>You can also check the
+                                    results comparing HTTP/1.1 and HTTP/2.<br>Please wait a moment.
+                                </p>
+                                <div class="list-wrp">
+                                    <ul class="list list-1 l" data-animOut="fadeOutUp" data-animIn="fadeInUp">
+                                        <li class="flex-cl animated s0-8 delay-0-4s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            numberHosts : {{pagespeed["numberHosts"]}}
+                                        </li>
+                                        <!-- <li class="flex-cl animated s0-8 delay-0-5s" data-animOut="fadeOutUp" data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            totalRequestBytes : {{pagespeed["totalRequestBytes"]}}
+                                        </li> -->
+                                        <li class="flex-cl animated s0-8 delay-0-6s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            numberJsResources : {{pagespeed["numberJsResources"]}}
+                                        </li>
+                                        <li class="flex-cl animated s0-8 delay-0-7s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            numberCssResources : {{pagespeed["numberCssResources"]}}
+                                        </li>
+                                        <li class="flex-cl animated s0-8 delay-0-8s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            numberStaticResources : {{pagespeed["numberStaticResources"]}}
+                                        </li>
+                                        <li class="flex-cl animated s0-8 delay-0-9s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            numberResources : {{pagespeed["numberResources"]}}
+                                        </li>
+                                    </ul>
+
+
+                                    <ul class="list list-1 r animated s0-8 delay-0-5s" data-animOut="fadeOutUp"
+                                        data-animIn="fadeInUp">
+                                        <li class="flex-cl animated s0-8 delay-0-5s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            totalRequestBytes : {{pagespeed["totalRequestBytes"]}}
+                                        </li>
+                                        <li class="flex-cl animated s0-8 delay-0-4s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            htmlResponseBytes : {{pagespeed["htmlResponseBytes"]}}
+                                        </li>
+                                        <li class="flex-cl animated s0-8 delay-0-5s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            javascriptResponseBytes : {{pagespeed["javascriptResponseBytes"]}}
+                                        </li>
+                                        <li class="flex-cl animated s0-8 delay-0-6s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            imageResponseBytes : {{pagespeed["imageResponseBytes"]}}
+                                        </li>
+                                        <!--  <li class="flex-cl animated s0-8 delay-0-7s" data-animOut="fadeOutUp" data-animIn="fadeInUp">
+                                             <span class="icon ti-arrow-circle-right"></span>
+                                             otherResponseBytes : {{pagespeed["otherResponseBytes"]}}
+                                         </li> -->
+                                        <li class="flex-cl animated s0-8 delay-0-8s" data-animOut="fadeOutUp"
+                                            data-animIn="fadeInUp">
+                                            <span class="icon ti-arrow-circle-right"></span>
+                                            cssResponseBytes : {{pagespeed["cssResponseBytes"]}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- / CONTENT -->
+
+                </div>
+            </div>
+            <!-- / ABOUT-SECTION -->
+
+            <!-- WORK-SECTION -->
+            <div class="sections work-section work-section-1">
+                <div class="container">
+
+                    <!-- TITLE -->
+                    <div class="title-wrp">
+                        <h5 class="title mini">Analyze your site performance</h5>
+                        <hr class="hr-1">
+                        <!-- <h1 class="title">Analyze your site performance</h1> -->
+                        <p class="sub-title"> you can identify ways to make your site faster.</p>
+                    </div><!-- / TITLE -->
+
+                    <!-- CONTENT -->
+                    <div class="content-wrp row" style="text-align:center">
+
+                        <ul class="rw eq3 mb10 gt10 popgallery-widget" style="height:240px">
+
+                            <li class="cl" style="height:105%; background-color:rgba(200,0,0,0.35);">
+                                <h3 class="hd">Should Fix</h3>
+                                <hr class="hr-1">
+                                {% for i in red %}
+                                <p class="txt">{{i}}</p>
+                                {% endfor %}
+                            </li><!-- /.cl -->
+
+                            <li class="cl" style="height:105%; background-color:rgba(100,60,0,0.35);">
+                                <h3 class="hd">Consider fixing</h3>
+                                <hr class="hr-1">
+                                {% for i in orange: %}
+                                <p class="txt">{{i}}</p>
+                                {% endfor %}
+                            </li><!-- /.cl -->
+
+                            <li class="cl" style="height:105%; background-color:rgba(0,80,0,0.35);">
+                                <h3 class="hd">Passed Rules</h3>
+                                <hr class="hr-1">
+                                {% for i in green: %}
+                                <p class="txt">{{i}}</p>
+                                {% endfor %}
+                            </li><!-- /.cl -->
+                        </ul>
+
+                    </div><!-- / CONTENT -->
+
+                </div>
+            </div>
+            <!-- / WORK-SECTION -->
+
+            <!-- SERVICES-SECTION -->
+            <div class="sections service-section service-section-2">
+                <div class="container">
+
+                    <!-- TITLE -->
+                    <div class="title-wrp">
+                        <h5 class="title mini">progress</h5>
+                        <hr class="hr-1">
+                        <h1 class="title">Current Position</h1>
+                        <p class="sub-title">Current progress informs us.</p>
+                    </div><!-- / TITLE -->
+
+                    <!-- CONTENT -->
+                    <div class="content-wrp">
+                        <div class="row gt0">
+
+                            <!-- INFO-BOX -->
+                            <div class="col-md-4">
+                                <div class="info-box info-box-1 odd">
+                                    <div class="img flex-cc"><span style="color:green;" class="pe-7s-power"></span>
+                                    </div>
+                                    <div class="info">
+                                        <h2 class="hd">input URL</h2>
+                                        <hr class="hr-1">
+                                        <p class="sub-txt">Check if Website supports HTTP/2</p>
+                                    </div>
+                                </div>
+                            </div><!-- / INFO-BOX -->
+
+                            <!-- INFO-BOX -->
+                            <div class="col-md-4">
+                                <div class="info-box info-box-1 even">
+                                    <div class="img flex-cc"><span style="color:green;" class="pe-7s-check"></span>
+                                    </div>
+                                    <div class="info">
+                                        <h2 class="hd">HTTP/2 Check</h2>
+                                        <hr class="hr-1">
+                                        <p class="sub-txt">Check if Website supports HTTP/2</p>
+                                    </div>
+                                </div>
+                            </div><!-- / INFO-BOX -->
+
+                            <!-- INFO-BOX -->
+                            <div class="col-md-4">
+                                <div class="info-box info-box-1 odd">
+                                    <div class="img flex-cc"><span id="icon3" class="pe-7s-browser"></span></div>
+                                    <div class="info">
+                                        <h2 class="hd">Webpage scraping</h2>
+                                        <hr class="hr-1">
+                                        <p class="sub-txt">Scrap the website</p>
+                                    </div>
+                                </div>
+                            </div><!-- / INFO-BOX -->
+
+                        </div>
+
+                        <div class="row gt0">
+
+                            <!-- INFO-BOX -->
+                            <div class="col-md-4">
+                                <div class="info-box info-box-1 even">
+                                    <div class="img flex-cc">
+                                        <a id="icon4module" href="" target="_blank"><span id='icon4'
+                                                                                           class="pe-7s-photo-gallery"></span></a>
+                                    </div>
+                                    <div class="info">
+                                        <h2 class="hd" id="h2icon4">HTTP/2 Demo</h2>
+                                        <hr class="hr-1">
+                                        <p class="sub-txt">we prepare the suppoert HTTP/1.1 and HTTP/2 Server</p>
+                                    </div>
+                                </div>
+                            </div><!-- / INFO-BOX -->
+
+                            <!-- INFO-BOX -->
+                            <div class="col-md-4">
+                                <div class="info-box info-box-1 odd">
+                                    <div class="img flex-cc"><span id='icon5' class="pe-7s-note2"></span></div>
+                                    <div class="info">
+                                        <h2 class="hd">Making a report</h2>
+                                        <hr class="hr-1">
+                                        <p class="sub-txt">Compare the two server pages to create a report</p>
+                                    </div>
+                                </div>
+                            </div><!-- / INFO-BOX -->
+
+                            <!-- INFO-BOX -->
+                            <div class="col-md-4">
+                                <div class="info-box info-box-1 even">
+                                    <div class="img flex-cc">
+                                        <a id="icon6module" href=""><span id='icon6'
+                                                                                           class="pe-7s-display1"></span></a>
+                                    </div>
+                                    <div class="info">
+                                        <h2 class="hd" id="h2icon6">Completed</h2>
+                                        <hr class="hr-1">
+                                        <p class="sub-txt">Report has been completed. Click here to go to the report</p>
+                                    </div>
+                                </div>
+                            </div><!-- / INFO-BOX -->
+
+                        </div>
+                    </div><!-- / CONTENT -->
+
+                </div>
+            </div>
+            <!-- / SERVICES-SECTION -->
+        </div>
+    </div>
+    <!-- / PAGE LEFT -->
+</div><!-- / MAIN-WRAPPER -->
+<!-- DEFAULT-SCRIPT -->
+<script src="../static/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../static/lib/jquery-validation/jquery.validate.min.js"></script>
+
+<!-- PLUGIN SCRIPT -->
+<script src="../static/js/plugins.js"></script>
+
+<!-- TEMPLATE SCRIPT -->
+<script src="../static/js/nc-common.js"></script>
+</body>
+</html>
